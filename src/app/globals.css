@@ -23,7 +23,33 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+.shine-element {
+  position: relative;
+  overflow: hidden;
+}
 
+.shine-element::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%; /* Start off-screen to the left */
+  width: 50%; /* Width of the shine */
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: skewX(-20deg); /* Optional slant */
+  animation: shine 500ms infinite linear;
+}
+
+@keyframes shine {
+  to {
+    left: 100%; /* Move across to the right */
+  }
+}
 body {
   margin: 0;
   overflow-x: hidden;

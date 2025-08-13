@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import CountriesData from "@/data/countriesData";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-
+import singleSkeleton from "@/components/singleSkeleton";
 const page = () => {
   const params = useParams();
   const countryName = params.country;
@@ -40,12 +40,25 @@ const page = () => {
           .join(", "),
         borders: [],
       });
+
+      foundCountry.borders?.map((country) => {
+        const foundBorderCountry = CountriesData.find(
+          (singlecountry) =>
+            singlecountry.cca3.toLowerCase() === country.toLowerCase()
+        );
+
+        if (foundBorderCountry) {
+          const { name } = foundBorderCountry;
+          setCountryData((prevState) => ({
+            ...prevState,
+            borders: [...prevState.borders, name.common],
+          }));
+        }
+      });
     } else {
       setNotFound(true);
     }
   }, [countryName]);
-
-  console.log(CountriesData.borders);
 
   return (
     <div className="w-screen m-5">
@@ -57,7 +70,7 @@ const page = () => {
       </span>
       {notFound ? (
         <div>Country not found</div>
-      ) : countryData ? (
+      ) : countryData !== null ? (
         <div className="flex flex-col text-center mb-10">
           <h1 className="text-8xl font-black mb-5">{countryData.name}</h1>
           <div className="flex flex-1 text-center items-center gap-x-5 justify-center text-xl font-light ">
@@ -113,7 +126,7 @@ const page = () => {
                           <Link
                             key={border}
                             href={`/${border}`}
-                            className="ml-2">
+                            className="ml-2 font-light bg-zinc-500/80 rounded-xl p-2 ">
                             {border}
                           </Link>
                         ))}
@@ -126,7 +139,9 @@ const page = () => {
           </div>
         </div>
       ) : (
-        <div>Loading...</div>
+        <div>
+          <singleSkeleton />
+        </div>
       )}
     </div>
   );
