@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Card = ({ name, region, population, cca3, capital, img }) => {
   return (
-    <div className="bg-zinc-700 text-white flex flex-col p-2 rounded-md m-3 hover:scale-105 ease-in-out transition-transform duration-200 w-72 h-72 ">
+    <div className="text-black bg-white border-2 border-zinc-600/20 dark:bg-zinc-700 shadow-black hover:shadow-sm hover:border-none dark:text-white flex flex-col p-2 rounded-md m-3 hover:scale-105 ease-in-out transition-transform duration-200 w-72 h-72 ">
       <Link className="country-card" href={`/${name}`}>
         <div className="flex-auto flex-wrap p-2 w-full h-48 ">
           <img src={img} alt={name} className="w-30 h-30 pb-4 object-cover" />

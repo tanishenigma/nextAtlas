@@ -1,36 +1,19 @@
-"use client";
-
-import { Globe, Moon, Sun } from "lucide-react";
-import React, { useState } from "react";
+import ThemeToggle from "@/components/ThemeToggle";
+import { Globe } from "lucide-react";
+import React from "react";
 
 const Header = () => {
-  const [theme, setTheme] = useState(0);
   return (
-    <header className="flex justify-between items-center bg-zinc-800 top-0 w-full fixed left-0 z-50">
+    <header className="flex justify-between items-center bg-white text-black  dark:bg-zinc-700 dark:text-white  top-0 w-full fixed left-0 z-50  shadow-xl/20 shadow-black">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-20 py-2">
         <div className="flex">
-          <h1 className="font-black tracking-tighter text-5xl t bg-gradient-to-tr">
+          <h1 className="font-black tracking-tighter text-5xl t bg-gradient-to-tr dark:text-primary-dark">
             Atlas
           </h1>
-          <Globe className="text-white " />
+          <Globe className=" dark:text-primary-dark" />
         </div>
-        {/* {THEME TOGGLE} */}
       </div>
-      <div
-        onClick={() => {
-          setTheme((prev) => !prev);
-        }}
-        className="text-xl font-bold flex items-center gap-x-4 text-right mr-20 pb-2 cursor-pointer">
-        {theme ? (
-          <>
-            <Moon className="w-6 h-6" /> Dark Mode
-          </>
-        ) : (
-          <>
-            <Sun className="w-6 h-6" /> Light Mode
-          </>
-        )}
-      </div>
+      <ThemeToggle />
     </header>
   );
 };

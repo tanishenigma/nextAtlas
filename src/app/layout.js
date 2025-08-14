@@ -22,8 +22,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-        <Link href="/countryCard" />
+        <main>
+          {" "}
+          {children}
+          <Link href="/countryCard" />
+        </main>
       </body>
     </html>
   );

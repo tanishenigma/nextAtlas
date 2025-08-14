@@ -6,7 +6,6 @@ import { useParams } from "next/navigation";
 import CountriesData from "@/data/countriesData";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import singleSkeleton from "@/components/singleSkeleton";
 const page = () => {
   const params = useParams();
   const countryName = params.country;
@@ -61,25 +60,27 @@ const page = () => {
   }, [countryName]);
 
   return (
-    <div className="w-screen m-5">
+    <div className="w-screen p-5 bg-white dark:bg-zinc-800/20">
       <span className="back-button" onClick={() => history.back()}>
-        <div className="flex items-center text-4xl cursor-pointer">
-          <ArrowLeft className="w-10 h-20" />
-          Back
+        <div className="flex items-center text-4xl cursor-pointer text-black dark:text-white ">
+          <ArrowLeft className="w-10 h-20" />{" "}
+          <span className="font-black ml-1">Back</span>
         </div>
       </span>
       {notFound ? (
         <div>Country not found</div>
       ) : countryData !== null ? (
-        <div className="flex flex-col text-center mb-10">
-          <h1 className="text-8xl font-black mb-5">{countryData.name}</h1>
+        <div className="flex flex-col text-center mb-10 dark:text-white text-black ">
+          <h1 className="text-8xl font-black mb-5 dark:text-white text-black">
+            {countryData.name}
+          </h1>
           <div className="flex flex-1 text-center items-center gap-x-5 justify-center text-xl font-light ">
             <img
               className="w-96 h-96  ml-40"
               src={countryData.flag}
               alt={`${countryData.name} flag`}
             />
-            <div className="flex flex-col bg-zinc-800 rounded-xl p-10 gap-y-2.5">
+            <div className="flex flex-col  dark:bg-zinc-800 bg-white border-2 border-zinc-500/40 rounded-xl p-10 gap-y-2.5">
               <div className="flex">
                 <div className="flex flex-1 flex-col text-left">
                   <p>
@@ -120,15 +121,17 @@ const page = () => {
                   </p>
                   <div className="border-countries">
                     {countryData.borders.length != 0 && (
-                      <span className="text-xl font-bold">
+                      <span className="text-xl font-bold flex">
                         Border Countries:
                         {countryData.borders.map((border) => (
-                          <Link
-                            key={border}
-                            href={`/${border}`}
-                            className="ml-2 font-light bg-zinc-500/80 rounded-xl p-2 ">
-                            {border}
-                          </Link>
+                          <div className="flex flex-wrap ">
+                            <Link
+                              key={border}
+                              href={`/${border}`}
+                              className="m-1 bg-zinc-400 text-white font-light  dark:text-white dark:bg-zinc-500/80 rounded-xl p-2 ">
+                              {border}
+                            </Link>
+                          </div>
                         ))}
                       </span>
                     )}

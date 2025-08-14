@@ -9,7 +9,7 @@ function App() {
   const [region, setRegion] = useState("");
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 bg-white dark:bg-zinc-800">
       <Header />
       <SearchRegion setRegion={setRegion} setSearch={setSearch} />
       <Countries region={region} search={search} />

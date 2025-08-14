@@ -18,16 +18,16 @@ const Filter = ({ setRegion }) => {
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
         type="button"
-        className="bg-zinc-600 p-2 rounded-md flex gap-x-2">
+        className="bg-white text-black dark:text-white dark:bg-zinc-600 p-2 rounded-md flex gap-x-2 border-2 border-zinc-500/20">
         Filter By Region
         <ArrowDownWideNarrow />
       </button>
       {regional ? (
-        <div className="absolute top-12 flex flex-col flex-end bg-zinc-700 rounded-xl p-4 py-0 cursor-pointer pt-2 pb-2">
+        <div className="absolute top-12 flex flex-col flex-end bg-white text-black dark:bg-zinc-700  dark:text-white rounded-xl p-4 py-0 cursor-pointer pt-2 pb-2 shadow-md shadow-black/40">
           {continent.map((region) => (
             <ul>
               <li
-                className="hover:bg-zinc-600 p-2 rounded-lg"
+                className="dark:hover:bg-zinc-600  hover:bg-zinc-300 p-2 rounded-lg"
                 onClick={() => {
                   handleClick();
                   setRegion(region);

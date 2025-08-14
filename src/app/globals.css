@@ -1,17 +1,62 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #feffff;
+  --color-primary-dark: #0f0f0f;
+  --color-background: #ffffff;
+  --color-text: #000000;
+  --color-accent: #3b82f6;
+  --color-surface: #f8fafc;
+
+  /* Define colors that Tailwind can use */
+  --color-primary-rgb: 254 255 255;
+  --color-background-rgb: 255 255 255;
+  --color-text-rgb: 0 0 0;
+  --color-accent-rgb: 59 130 246;
+  --color-surface-rgb: 248 250 252;
+}
+
+/* Dark theme */
+@theme dark {
+  --color-primary: #1d1d1d;
+  --color-primary-dark: #feffff;
+  --color-background: #222222;
+  --color-text: #ffffff;
+  --color-accent: #60a5fa;
+  --color-surface: #1a1a1a;
+
+  /* Define colors that Tailwind can use */
+  --color-primary-rgb: 29 29 29;
+  --color-background-rgb: 34 34 34;
+  --color-text-rgb: 255 255 255;
+  --color-accent-rgb: 96 165 250;
+  --color-surface-rgb: 26 26 26;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0f0f0f;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Apply theme colors to html and main */
+html {
+  background-color: rgb(var(--color-background-rgb));
+  color: rgb(var(--color-text-rgb));
+}
+
+main {
+  margin: 0;
+  overflow-x: hidden;
+  display: flex;
+  min-height: 100vh;
+  background-color: rgb(var(--color-background-rgb));
+  color: rgb(var(--color-text-rgb));
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -23,6 +68,7 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
 .shine-element {
   position: relative;
   overflow: hidden;
@@ -49,12 +95,4 @@
   to {
     left: 100%; /* Move across to the right */
   }
-}
-body {
-  margin: 0;
-  overflow-x: hidden;
-
-  display: flex;
-  color: #ffffff;
-  min-height: 100vh;
 }
